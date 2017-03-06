@@ -4,18 +4,9 @@
 (function () {
     var TAG = 'EditNumberController';
     var buyNumberListDiv;
-    var buyNumberListIndex = 0;
+    var inputCount = 0;
     var applyId;
     var numberArray = [];
-
-    mui.init({
-        beforeback:onBack
-    });
-
-    function onBack() {
-        var target = plus.webview.getWebviewById('apply-details.html');
-        mui.fire(target, 'editNumber', {data:numberArray});
-    };
 
     mui.plusReady(onPlusReady);
 
@@ -38,31 +29,59 @@
         document.getElementById('send').addEventListener('click', send);
     };
 
-    function addBuyNumber(number) {
+    function addBuyNumber(number, index) {
+        var pos = index ? index : inputCount;
+
         var div = document.createElement('div');
         div.className = 'input-content';
 
-        buyNumberListIndex++;
+        var titleDiv = document.createElement('div');
         var label = document.createElement('label');
         label.className = 'number-label';
-        label.innerText = '采购编号' + buyNumberListIndex;
+        label.innerText = '采购编号' + (parseInt(pos) + 1);
+        titleDiv.appendChild(label);
+
+        var deleteLabel = document.createElement('button');
+        deleteLabel.innerText = '删除';
+        deleteLabel.id = pos + '';
+        deleteLabel.addEventListener('click', deleteItem);
+        titleDiv.appendChild(deleteLabel);
 
         var input = document.createElement('input');
         input.className = 'number-input';
         input.type = 'number';
         input.placeholder = '请填写采购编号';
         input.value = number ? number : '';
-        input.id = 'buyNumber' + buyNumberListIndex;
+        input.id = 'buyNumber' + inputCount;
         input.maxLength = '20';
 
-        div.appendChild(label);
+        div.appendChild(titleDiv);
         div.appendChild(input);
 
         buyNumberListDiv.appendChild(div);
+        inputCount++;
     };
 
+    function deleteItem() {
+        numberArray.splice(this.id, 1);
+        consoleLog(TAG, JSON.stringify(numberArray));
+        removeElementNode(buyNumberListDiv);
+        inputCount--;
+
+        var tLength = inputCount;
+        inputCount = 0;
+        for(var i = 0; i < tLength; i++){
+            if(i < numberArray.length) {
+                addBuyNumber(numberArray[i]);
+            } else {
+                addBuyNumber();
+            }
+        }
+    };
     function send() {
         initNumberArray();
+        sendToLastPage();
+
         mui.back();
         // var info = {
         //     applyId : applyId,
@@ -71,9 +90,13 @@
         // muiPostDataWithAuthorization(HTTP_ADD_BUY_NUMBER, info, sendSuccess);
     };
 
+    function sendToLastPage() {
+        var target = plus.webview.getWebviewById('apply-details.html');
+        mui.fire(target, 'editNumber', {data:numberArray});
+    };
     function initNumberArray() {
         numberArray.splice(0, numberArray.length);
-      for(var i = 1; i <= buyNumberListIndex; i++){
+      for(var i = 0; i < inputCount; i++){
           var input = document.getElementById('buyNumber' + i);
           if(input.value.trim()) {
               numberArray.push(input.value);
@@ -103,7 +126,7 @@
             addBuyNumber();
         } else {
             for(var i in numberArray) {
-                addBuyNumber(numberArray[i]);
+                addBuyNumber(numberArray[i], i);
             }
         }
     };

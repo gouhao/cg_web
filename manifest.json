@@ -612,7 +612,8 @@
 					"js/HttpCommon.js",
 					"css/mui.min.css",
 					"js/Common.js",
-					"png/icon_back.png"
+					"png/icon_back.png",
+					"js/app.js"
 				],
 				"refer": [],
 				"priority": 0
