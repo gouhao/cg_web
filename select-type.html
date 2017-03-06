@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/base.css" />
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init({
+      		beforeback:dealBack,
+      	});
+      	
+      	var lastClickInput;
+      	var products = new Array();
+      	products[0] = '交通工具';
+      	products[1] = '办公设备';
+      	products[2] = '网络设备';
+      	products[3] = '办公消耗品';
+      	products[4] = '空调机';
+      	products[5] = '视频会议设备';
+      	products[6] = '监控设备';
+      	products[7] = '电梯';
+      	products[8] = '超重机';
+      	products[9] = '锅炉';
+      	products[10] = '燃煤';
+      	products[11] = '中央空调机组';
+      	products[12] = '公务制服';
+      	products[13] = '各类图书及教材';
+      	
+      	var projects = new Array();
+      	projects[0] = '建筑物改扩建及维修、装修工程';
+      	projects[1] = '水暖管网维修更新工程';
+      	projects[2] = '绿化、美化工程及维护';
+      	projects[3] = '系统集成及网络工程';
+      	projects[4] = '电梯、锅炉及消防等安装工程';
+      	projects[5] = '污水处理工程';
+//    	projects[6] = '监控设备';
+      	
+      	var services = new Array();
+      	services[0] = '公务车辆保险、维修';
+      	services[1] = '会议接待';
+      	services[2] = '印刷';
+      	services[3] = '物业管理';
+      	services[4] = '工程设计和监理';
+      	services[5] = '软件开发设计和升级';
+      	services[6] = '网络服务费';
+      	services[7] = '社会中介服务';
+      	services[8] = '租赁、培训';
+      	services[9] = '政府购买服务通用类项目';
+      	
+      	var initSelectValue = undefined;
+      	var self;
+      	mui.plusReady(function(){
+      		self = plus.webview.currentWebview();
+      		initSelectValue = self.type == '' || self.type=='undefined' ? '交通工具' : self.type;
+      		console.log('selected type is ' + initSelectValue);
+      		createContent();
+      	});
+      	
+      	function createContent(){
+      		var parent = document.getElementById('content');
+      		
+      		var thingsType = createItemTitle('货物类')
+      		createRadioItem(thingsType, products);
+      		parent.appendChild(thingsType);
+      		
+      		var projectType = createItemTitle('工程类')
+      		createRadioItem(projectType, projects);
+      		parent.appendChild(projectType);
+      		
+      		var serviceType = createItemTitle('服务类');
+      		createRadioItem(serviceType, services);
+      		parent.appendChild(serviceType);
+      	};
+      	
+      	function createItemTitle(itemTitle) {
+      		var productType = document.createElement('li');
+      		productType.className = "mui-table-view-cell mui-collapse";
+      		var a = document.createElement('a');
+      		a.className = 'mui-navigate-right type-title';
+      		a.href = '#';
+      		a.innerText = itemTitle;
+      		productType.appendChild(a);
+      		return productType;
+      	};
+      	
+      	function createRadioItem(parent, items) {
+      		var ul = document.createElement('ul');
+      		ul.className = 'mui-table-view mui-table-view-chevron';
+      		
+      		for(var i in items) {
+      			var li = document.createElement('li');
+      			li.className = 'mui-table-view-cell mui-radio type-item';
+	      		var label = document.createElement('label');
+	      		label.innerText = items[i];
+	      		
+	      		var input = document.createElement('input');
+	      		input.type = 'radio';
+	      		input.name = 'types';
+	      		input.value = items[i];
+	      		if(items[i] == initSelectValue) {
+	      			lastClickInput = input;
+	      			input.checked = true;
+	      		}
+	      		li.appendChild(label);
+	      		li.appendChild(input);
+	      		ul.appendChild(li);
+      		}
+	      	parent.appendChild(ul);
+      	};
+      	function dealBack(){
+      		var target = plus.webview.getWebviewById('product-details.html');
+      		var radioGroup = document.getElementsByName('types');
+      		var checked;
+      		for(var i in radioGroup) {
+      			if(radioGroup[i].checked) {
+      				checked = radioGroup[i].value;
+      				break;
+      			}
+      		}
+      		console.log('checked item is ' + checked);
+      		mui.fire(target, 'selectType', {type:checked});
+      	};
+    </script>
+    <style>
+    	#content {
+    		margin-top: 0px;
+    	}
+    	
+    	.type-title {
+    		font-size: 16px;
+    		color: #212121;
+    		height: 38px;
+    		background-color: #cde8f6;
+    	}
+    	
+    	.tpe-item {
+    		font-size: 14px;
+    		color: #212121;
+    		height: 48px;
+    		width: 100%;
+    		padding-left: 16px;
+    		padding-right: 9px;
+    	}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<img class="mui-action-back mui-pull-left" src="png/icon_back.png" />
+		<h1 class="mui-title">采购类型</h1>
+		<img id="search" class="mui-pull-right" src="png/icon_select_type_search.png" />
+	</header>
+	<div class="mui-content">
+		<ul id="content" class="mui-table-view mui-table-view-chevron">
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript" src="js/app.js" ></script>
+		<script type="text/javascript" src="js/Common.js" ></script>
+		<script type="text/javascript" src="js/HttpCommon.js" ></script>
+		<script type="text/javascript" src="js/MainController.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/base.css" />
+		<style>
+			.mui-content{
+				background-color: #f0f6fe;
+			}
+			#banner {
+				height: 213px;
+				width: 100%;
+				margin-top: 10px;
+			}
+			.title {
+				margin: 35px 15px 10px;
+			}
+			
+			.title+.content {
+				margin: 10px 15px 35px;
+				color: #bbb;
+				text-indent: 1em;
+				font-size: 14px;
+				line-height: 24px;
+			}
+			
+			.mui-inner-wrap {
+				height: 100%;
+			}
+			
+			#waitMeDeal {
+				position: relative;
+			}
+			
+			.apply-red-tip {
+				background-color: red;
+				position: absolute;
+				top: 0;
+				right: 0;
+				margin-top: 5px;
+				margin-right: 5px;
+			}
+			
+			#messageBtn {
+				position: relative;
+			}
+			
+			.mui-content {
+				padding-left: 8px;
+				padding-right: 8px;
+			}
+			
+			.mui-content .mui-table-view-cell{
+				margin: 0px;
+				padding: 0px;
+			}
+			.menu-item {
+				display: flex;
+				align-items: center;
+				height: 70px;
+				padding-top: 12px;
+				padding-left: 4px;
+				position: relative;
+			}
+			
+			.menu-item-icon {
+				width: 66px;
+				height: 66px;
+			}
+			
+			.menu-item-nav {
+				width: 32px;
+				height: 32px;
+				position: absolute;
+				right: 12px;
+				top: 50%;
+				margin-top: -16px;
+			}
+			.menu-item label{
+				font-size: 15px;
+				color: #212121;
+				margin-left: 10px;
+				margin-bottom: 5px;
+			}
+			.mui-content .mui-table-view {
+				margin-top: -10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="slideMenuWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<div id="mainContent" class="mui-inner-wrap">
+				<aside id="slideMenu" class="mui-off-canvas-left">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<div id="username" class="title">李开心</div>
+							<div class="content">警号:<span id="policeCode">112090</span></div>
+							<ul id="menu" class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+								<li id="setting" class="mui-table-view-cell">
+									<a class="mui-navigate-right">设置</a>
+								</li>
+								<li id="buyIntroduce" class="mui-table-view-cell">
+									<a class="mui-navigate-right">采购流程说明</a>
+								</li>
+								<li id="about" class="mui-table-view-cell">
+									<a class="mui-navigate-right">关于</a>
+								</li>
+								<li id="checkVersion" class="mui-table-view-cell">
+									<a class="mui-navigate-right">版本检测</a>
+								</li>
+								<li id="quit" class="mui-table-view-cell">
+									<a class="mui-navigate-right">退出</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</aside>
+
+				<header class="mui-bar-nav mui-bar">
+					<img id="meBtn" class="mui-pull-left" src="png/main_header_left.png"></button>
+					<div id="messageBtn" class="mui-pull-right">
+						<img src="png/main_header_right.png"></img>
+						<label class="apply-red-tip" style="margin-top: 0px; margin-right: 0px; display: none;">3</label>
+					</div>
+
+					<h1 class="mui-title">采购审批</h1>
+				</header>
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="muiscroll">
+						<img id="banner" src="png/icon_main_placeholder.png"/>
+						
+						<ul class="mui-table-view">
+							<li id="myApply" class="mui-table-view-cell">
+								<div class="menu-item">
+									<img class="menu-item-icon" src="png/icon_main_my_apply.png" />
+									<label>我的申请</label>
+									<img class="menu-item-nav" src="png/icon_main_item_right.png" />
+								</div>
+							</li>
+							<li id="waitMeDeal" class="mui-table-view-cell">
+								<div class="menu-item">
+									<img class="menu-item-icon" src="png/icon_main_wait_apply.png" />
+									<label>待我审批</label>
+									<img class="menu-item-nav" src="png/icon_main_item_right.png" />
+								</div>
+								<label class="apply-red-tip" style="display: none;">3</label>
+							</li>
+							<li id="waitMeBuy" class="mui-table-view-cell">
+								<div class="menu-item">
+									<img class="menu-item-icon" src="png/icon_main_wait_apply.png" />
+									<label>待我采购</label>
+									<img class="menu-item-nav" src="png/icon_main_item_right.png" />
+								</div>
+								<label class="apply-red-tip" style="display: none;">3</label>
+							</li>
+							<li id="myShare" class="mui-table-view-cell">
+								<div class="menu-item">
+									<img class="menu-item-icon" src="png/icon_main_my_focus.png" />
+									<label>我的关注</label>
+									<img class="menu-item-nav" src="png/icon_main_item_right.png" />
+								</div>
+							</li>
+							
+						</ul>
+						<ul class="mui-table-view" style="margin-top: 10px;">
+						<li id="buy" class="mui-table-view-cell">
+								<div class="menu-item">
+									<img class="menu-item-icon" src="png/icon_main_start_apply.png" />
+									<label>申请采购</label>
+									<img class="menu-item-nav" src="png/icon_main_item_right.png" />
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+	</body>
+
+</html>

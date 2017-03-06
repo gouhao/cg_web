@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/base.css" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		
+		<script type="text/javascript" src="js/Common.js" ></script>
+		<script type="text/javascript" src="js/HttpCommon.js" ></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/ProductDetail.js"></script>
+		<script src="js/app.js"></script>
+		
+		<script type="text/javascript" src="js/StartApplyController.js" ></script>
+		<style>
+			.applyAttachment,
+			.applyDetail,
+			.applyMoney,
+			.applyNotify,
+			.applyReason {
+				background-color: white;
+			}
+			
+			span {
+				margin-left: 5px;
+				color: gray;
+				font-size: 14px;
+			}
+			
+			p {
+				color: black;
+			}
+			
+			.applyAttachment img,
+			.applyNotify img {
+				width: 64px;
+				height: 64px;
+				margin-right: 10px;
+			}
+			
+			.addDetail {
+				height: 50px;
+				text-align: center;
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的采购</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>采购事由</label>
+					<input id="applyTitle" maxlength="20" type="text" placeholder="请输入采购事由(必填)">
+				</div>
+			</div>
+			<div id="detailList" class="mui-input-group">
+				<h4>物品明细</h4>
+			</div>
+			<div id="addDetailDiv" class="addDetail">
+				<h4>增加明细</h4>
+			</div>
+			<div class="applyMoney">
+				<h4>合计金额：<span id="totalPrice">3000</span>元</h4>
+				<label>备注</label>
+				<input id="applyMark" class="mui-input" placeholder="请输入备注" />
+			</div>
+			<div class="applyAttachment">
+				<h4>附件</h4>
+				<div id="attachmentList">
+					<img id="addAttachmentImg" src="qq.png" />
+				</div>
+
+			</div>
+			<div class="applyNotify">
+				<h4>知会人<span>(提交申请后,同时共享以下人员)</span></h4>
+				<div id="notify">
+					<img id="addNotifyImg" src="qq.png" />
+				</div>
+
+			</div>
+			<button id="submit" class="mui-btn-block mui-btn-blue">提交</button>
+		</div>
+		</div>
+	</body>
+
+</html>

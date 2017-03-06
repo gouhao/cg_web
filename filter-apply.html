@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css" />
+    <script src="js/mui.min.js"></script>
+    <script type="text/javascript" src="js/FilterApplyController.js" ></script>
+	<style>
+		table{
+			width: 100%;
+			text-align: center;
+			border-collapse: separate;
+			border-spacing: 14px 14px;
+			background-color: white;
+		}
+		tr{
+			width: 100%;
+		}
+		td{
+			width: 100px;
+			height: 42px;
+			padding: 10px;
+			background-color: lightgray;
+			font-size: 14px;
+			color: #212121;
+		}
+	</style>
+</head>
+<style>
+	table{
+		
+	}
+</style>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <img class="mui-action-back mui-pull-left" src="png/icon_back.png" />
+        <h1 class="mui-title">筛选</h1>
+    </header>
+    <div class="mui-content">
+    	<table id="table">
+    		<tr>
+    			<td id="all">全部</td>
+    			<td id="appling">审批中</td>
+    			<td id="refuse">审批拒绝</td>
+    		</tr>
+    		<tr>
+    			<td id="pass">审批通过</td>
+    			<td id="ready">合同备案中</td>
+    			<td id="destory">已撤销</td>
+    		</tr>
+    		<tr>
+    			<td id="finish">已完结</td>
+    		</tr>
+    	</table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/base.css" rel="stylesheet"/>
+    <style>
+        .bottomButton {
+            width: 100%;
+            position: absolute;
+            bottom: 10px;
+        }
+
+        #addBuyNumber {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .mui-scroll-wrapper {
+            margin-top: 50px;
+            height: auto;
+            max-height: 75%;
+        }
+    </style>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav">
+    <img class="mui-action-back mui-pull-left" src="png/icon_back.png"/>
+    <h1 class="mui-title">填写采购编号</h1>
+</header>
+<div class="mui-content">
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <div id="buyNumberList">
+                <div class="input-content">
+                    <label class="number-label">采购编号1</label>
+                    <input class="number-input" type="number" placeholder="请填写采购编号" id="buyNumber1" maxlength="20"/>
+                </div>
+            </div>
+            <div id="addBuyNumber">
+                <hr/>
+                <label>增加采购编号</label>
+                <hr/>
+            </div>
+        </div>
+    </div>
+    <div class="bottomButton">
+        <hr/>
+        <button id="send" class="mui-btn-blue mui-btn-block">发送</button>
+    </div>
+
+</div>
+
+<script src="js/mui.min.js"></script>
+<script src="js/Common.js"></script>
+<script src="js/HttpCommon.js"></script>
+<script src="js/EditNumberController.js"></script>
+</body>
+
+</html>

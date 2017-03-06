@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				statusBarBackground: '#999',
+				keyEventBind: {
+					backbutton: false,
+					menubutton: false
+				}
+			});
+		</script>
+		<style>
+			.mui-input-row label {}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">我的申请</h1>
+		</header>
+		<div class="mui-content" style="background-color: white;">
+			<div>
+				<div class="mui-input-group" style="width: 85%;float: left;">
+					<div class="mui-input-row">
+						<label>申请编号</label>
+						<input type="number" class="mui-input mui-input-clear" placeholder="请输入申请编号" />
+					</div>
+					<div class="mui-input-row">
+						<label>采购事由</label>
+						<input type="text" class="mui-input mui-input-clear" placeholder="请输入采购事由" />
+					</div>
+					<div class="mui-input-row">
+						<label>申请时间</label>
+						<input type="datetime" class="mui-input mui-input-clear" placeholder="请输入申请时间" />
+					</div>
+				</div>
+				<div style="width: 15%; height: 100%;float: left; text-align: center;">
+					<img src="qq.png" width="50px" height="50px" />
+				</div>
+			</div>
+			<div style="float: right; margin-top: 30px;">
+				<div class="mui-input-group">
+					<div class="mui-input-row">
+						<label>采购明细1</label>
+					</div>
+					<div class="mui-input-row">
+						<label>名称</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入名称"/>
+					</div>
+					<div class="mui-input-row">
+						<label>采购类型</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入采购类型"/>
+					</div>
+					<div class="mui-input-row">
+						<label>数量</label>
+						<input type="number" class="mui-input-clear" placeholder="请输入采购数量"/>
+					</div>
+					<div class="mui-input-row">
+						<label>预算单价</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入预算单价"/>
+					</div>
+					<div class="mui-input-row">
+						<label>预算总金额</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入预算总金额"/>元
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
