@@ -4,7 +4,7 @@
 (function () {
     var TAG = 'EditNumberController';
     var buyNumberListDiv;
-    var buyNumberListIndex = 1;
+    var buyNumberListIndex = 0;
     var applyId;
     var numberArray = [];
 
@@ -28,6 +28,9 @@
     function initData() {
         var self = plus.webview.currentWebview();
         applyId = self.extras.applyId;
+        if(self.extras.buyNumber){
+            numberArray = self.extras.buyNumber;
+        }
     };
 
     function initAction() {
@@ -35,7 +38,7 @@
         document.getElementById('send').addEventListener('click', send);
     };
 
-    function addBuyNumber() {
+    function addBuyNumber(number) {
         var div = document.createElement('div');
         div.className = 'input-content';
 
@@ -48,7 +51,7 @@
         input.className = 'number-input';
         input.type = 'number';
         input.placeholder = '请填写采购编号';
-
+        input.value = number ? number : '';
         input.id = 'buyNumber' + buyNumberListIndex;
         input.maxLength = '20';
 
@@ -59,7 +62,6 @@
     };
 
     function send() {
-        mui.toast('send');
         initNumberArray();
         mui.back();
         // var info = {
@@ -70,9 +72,12 @@
     };
 
     function initNumberArray() {
+        numberArray.splice(0, numberArray.length);
       for(var i = 1; i <= buyNumberListIndex; i++){
           var input = document.getElementById('buyNumber' + i);
-          numberArray.push(input.value);
+          if(input.value.trim()) {
+              numberArray.push(input.value);
+          }
         }
     };
 
@@ -89,5 +94,17 @@
     function initUi() {
         mui('.mui-scroll-wrapper').scroll({ indicators: false });
         buyNumberListDiv = document.getElementById('buyNumberList');
+
+        initBuyNumberUi();
+    };
+
+    function initBuyNumberUi() {
+        if(numberArray.length == 0) {
+            addBuyNumber();
+        } else {
+            for(var i in numberArray) {
+                addBuyNumber(numberArray[i]);
+            }
+        }
     };
 })();

@@ -2,8 +2,7 @@
  * Created by gouhao on 2017/3/2 0002.
  */
 (function () {
-    var buyNumberList;
-    var buyNumberListDiv;
+
     var TAG = 'ApplyDetailsController';
     var applyId;
     var isShowMoreDetails;
@@ -11,7 +10,9 @@
     var applyIdSpan, applyTitleSpan, applyDateSpan, applyTotalMoneySpan, applyRemarkSpan;
     var applyStatusDiv, applyStatusSpan, productDetailDiv;
     var applyDetail = {};
-    var from;
+    var from, editBuyNumber, buyNumber;
+    var buyNumberList;
+    var buyNumberListDiv;
     mui.plusReady(onPlusReady);
 
     function onPlusReady() {
@@ -55,27 +56,41 @@
         createProductDetailHtml()
     };
 
+
+
     function initUi() {
         applyIdSpan = document.getElementById('applyId');
         applyTitleSpan = document.getElementById('applyTitle');
         applyDateSpan = document.getElementById('applyDate');
         applyTotalMoneySpan = document.getElementById('applyTotalMoney');
         applyRemarkSpan = document.getElementById('applyRemark');
-
+        editBuyNumber = document.getElementById('editBuyNumber');
         applyStatusDiv = document.getElementById('applyStatusDiv');
         applyStatusSpan = document.getElementById('applyStatus');
         buyNumberListDiv = document.getElementById('buyNumberList');
+
+        buyNumber = document.getElementById('buyNumber');
+        checkBuyNumberList();
         if (from == FROM_APPLY_DEAL_PERSON) {
             document.getElementById('dealPersonMenu').style.display = 'block';
         } else if (from == FROM_APPLY_BUY_PERSON) {
             document.getElementById('buyPersonMenu').style.display = 'block';
         }
+
+    };
+
+    function checkBuyNumberList() {
+        var buyNumberEmpty = buyNumberList && buyNumberList.length > 0;
+        editBuyNumber.style.display = buyNumberEmpty ? 'block' : 'none';
+        buyNumber.style.display = buyNumberEmpty ? 'none' : 'block';
     };
 
     function initAction() {
         document.getElementById('hideImg').addEventListener('click', clickHide);
-        document.getElementById('bottomMenu').addEventListener('click', onBottomClick);
+        document.getElementById('bottomMenu').addEventListener('click', onButtonClick);
         window.addEventListener('editNumber', onEditNumber);
+
+        editBuyNumber.addEventListener('click', onButtonClick);
     };
 
     function clickHide() {
@@ -129,7 +144,7 @@
     }
 
 
-    function onBottomClick(event) {
+    function onButtonClick(event) {
         //test data
         applyDetail = {};
         applyDetail.id = 10;
@@ -148,6 +163,9 @@
                 break;
             case 'buyNumber':
                 muiOpenWindowWithoutWaiting('edit-number.html', {applyId:applyDetail.applyId});
+                break;
+            case 'editBuyNumber':
+                muiOpenWindowWithoutWaiting('edit-number.html', {applyId:applyDetail.applyId, buyNumber:buyNumberList});
                 break;
         }
     };
@@ -185,11 +203,13 @@
             buyNumberList = event.detail.data;
             consoleLog(TAG, JSON.stringify(buyNumberList));
             createBuyNumberUi();
+            checkBuyNumberList();
         }
     };
 
     function createBuyNumberUi() {
         var length = buyNumberList.length;
+        removeElementNode(buyNumberListDiv);
         for (var i = 1; i <= length; i++) {
             var div = document.createElement('div');
             var label = document.createElement('label');
