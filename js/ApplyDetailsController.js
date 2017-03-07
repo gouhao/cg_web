@@ -11,7 +11,7 @@
     var applyStatusDiv, applyStatusSpan, productDetailDiv;
     var applyDetail = {};
     var from, editBuyNumber, buyNumber;
-    var buyNumberList;
+    var buyNumberList, contractList = [];
     var buyNumberListDiv;
     mui.plusReady(onPlusReady);
 
@@ -89,7 +89,7 @@
         document.getElementById('hideImg').addEventListener('click', clickHide);
         document.getElementById('bottomMenu').addEventListener('click', onButtonClick);
         window.addEventListener('editNumber', onEditNumber);
-
+        window.addEventListener('addContract', onAddContract);
         editBuyNumber.addEventListener('click', onButtonClick);
     };
 
@@ -162,10 +162,15 @@
                 });
                 break;
             case 'buyNumber':
-                muiOpenWindowWithoutWaiting('edit-number.html', {applyId:applyDetail.applyId});
+                muiOpenWindowWithoutWaiting('add-detail.html', {applyId:applyDetail.applyId});
                 break;
             case 'editBuyNumber':
-                muiOpenWindowWithoutWaiting('edit-number.html', {applyId:applyDetail.applyId, buyNumber:buyNumberList});
+                muiOpenWindowWithoutWaiting('add-detail.html', {applyId:applyDetail.applyId, contentList:buyNumberList,
+                    from:FROM_ADD_NUMBER});
+                break;
+            case 'addContract':
+                muiOpenWindowWithoutWaiting('add-detail.html', {applyId:applyDetail.applyId, contentList:contractList,
+                    from:FROM_ADD_CONTRACT});
                 break;
         }
     };
@@ -205,6 +210,23 @@
             createBuyNumberUi();
             checkBuyNumberList();
         }
+    };
+
+    function onAddContract() {
+      if(event.detail.data){
+          contractList = event.detail.data;
+          consoleLog(TAG, JSON.stringify(buyNumberList));
+          createContractUi();
+          checkContractList();
+      }
+    };
+
+    function createContractUi() {
+
+    };
+
+    function checkContractList() {
+
     };
 
     function createBuyNumberUi() {

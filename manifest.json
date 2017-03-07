@@ -426,7 +426,8 @@
 				],
 				"refer": [
 					"apply-view.html",
-					"edit-number.html"
+					"edit-number.html",
+					"add-detail.html"
 				],
 				"priority": 0
 			},
@@ -614,6 +615,23 @@
 					"js/Common.js",
 					"png/icon_back.png",
 					"js/app.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"add-detail.html": {
+				"resources": [
+					"js/AddDetailContractStrategy.js",
+					"js/AddDetailNumberStrategy.js",
+					"js/AddDetailController.js",
+					"js/app.js",
+					"css/base.css",
+					"js/mui.min.js",
+					"js/AddDetailBase.js",
+					"js/HttpCommon.js",
+					"css/mui.min.css",
+					"js/Common.js",
+					"png/icon_back.png"
 				],
 				"refer": [],
 				"priority": 0

@@ -31,16 +31,16 @@
 <body>
 <header class="mui-bar mui-bar-nav">
     <img class="mui-action-back mui-pull-left" src="png/icon_back.png"/>
-    <h1 class="mui-title">填写采购编号</h1>
+    <h1 id="title" class="mui-title"></h1>
 </header>
 <div class="mui-content">
     <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
-            <div id="buyNumberList">
+            <div id="contentListDiv">
             </div>
-            <div id="addBuyNumber">
+            <div id="addMenuDiv">
                 <hr/>
-                <label>增加采购编号</label>
+                <label id="addContent"></label>
                 <hr/>
             </div>
         </div>
@@ -56,7 +56,10 @@
 <script src="js/app.js"></script>
 <script src="js/Common.js"></script>
 <script src="js/HttpCommon.js"></script>
-<script src="js/EditNumberController.js"></script>
+<script src="js/AddDetailBase.js"></script>
+<script src="js/AddDetailContractStrategy.js"></script>
+<script src="js/AddDetailNumberStrategy.js"></script>
+<script src="js/AddDetailController.js"></script>
 </body>
 
 </html>

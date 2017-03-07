@@ -39,6 +39,12 @@ var HTTP_EDIT_BUY_NUMBER = HTTP_SERVER + 'pms.purchase.updateapplyoutfromserver/
 
 var HTTP_DELETE_BUY_NUMBER = HTTP_SERVER + 'pms.purchase.deleteapplyoutfromserver/global';
 
+var HTTP_ADD_CONTRACT = HTTP_SERVER + 'pms.purchase.cratecontractfromserver/global';
+
+var HTTP_EDIT_CONTRACT = HTTP_SERVER + 'pms.purchase.updatecontractfromserver/global';
+
+var HTTP_DELETE_CONTRACT = HTTP_SERVER + 'pms.purchase.updatecontractfromserver/global';
+
 function muiPost(url, dataObject, successFun, errorFun) {
 	var jsonStr = JSON.stringify(dataObject);
 	console.log('url:' + url + ', data:' + jsonStr);
