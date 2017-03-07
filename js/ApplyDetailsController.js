@@ -12,7 +12,7 @@
     var applyDetail = {};
     var from, editBuyNumber, buyNumber;
     var buyNumberList, contractList = [];
-    var buyNumberListDiv;
+    var buyNumberListDiv, contractListDiv;
     mui.plusReady(onPlusReady);
 
     function onPlusReady() {
@@ -68,6 +68,7 @@
         applyStatusDiv = document.getElementById('applyStatusDiv');
         applyStatusSpan = document.getElementById('applyStatus');
         buyNumberListDiv = document.getElementById('buyNumberList');
+        contractListDiv = document.getElementById('contractListDiv');
 
         buyNumber = document.getElementById('buyNumber');
         checkBuyNumberList();
@@ -220,19 +221,84 @@
     function onAddContract() {
       if(event.detail.data){
           contractList = event.detail.data;
-          consoleLog(TAG, JSON.stringify(contractList));
           createContractUi();
           checkContractList();
       }
     };
 
     function createContractUi() {
-
+        var length = contractList.length;
+        for(var i = 0; i < length; i++) {
+            contractListDiv.appendChild(createItem(contractList[i], i));
+        }
     };
 
     function checkContractList() {
 
     };
+
+    function createItem(contractItem, index) {
+        consoleLog(TAG, JSON.stringify(contractItem));
+        var parentDiv = document.createElement('div');
+        parentDiv.className = 'input-content';
+
+        var titleDiv = document.createElement('div');
+        var label = document.createElement('label');
+        label.className = 'item-title';
+        label.innerText = '合同备案' + (parseInt(index) + 1);
+        titleDiv.appendChild(label);
+
+        parentDiv.appendChild(titleDiv);
+
+        var companyDiv = document.createElement('div');
+
+        var companyLabel = document.createElement('label');
+        companyLabel.innerText = '中标单位';
+
+        var companyInput = document.createElement('label');
+        companyInput.className = 'item-input';
+        companyInput.type = 'text';
+        companyInput.innerText = contractItem ? contractItem.company : '';
+        companyInput.id = 'company' + this.itemCount;
+        companyInput.maxLength = '20';
+        companyDiv.appendChild(companyLabel);
+        companyDiv.appendChild(companyInput);
+
+        var priceDiv = document.createElement('div');
+
+        var priceLabel = document.createElement('label');
+        priceLabel.innerText = '合同金额';
+
+        var priceInput = document.createElement('label');
+        priceInput.className = 'item-input';
+        priceInput.innerText = contractItem ? contractItem.price : '';
+        priceInput.id = 'price' + this.itemCount;
+        priceInput.maxLength = '20';
+
+        priceDiv.appendChild(priceLabel);
+        priceDiv.appendChild(priceInput);
+
+        var dateDiv = document.createElement('div');
+
+        var dateLabel = document.createElement('label');
+        dateLabel.innerText = '合同日期';
+
+        var dateInput = document.createElement('label');
+        dateInput.className = 'item-input';
+        dateInput.innerText = contractItem ? contractItem.date : '';
+        dateInput.id = 'date' + this.itemCount;
+        dateInput.maxLength = '20';
+
+        dateDiv.appendChild(dateLabel);
+        dateDiv.appendChild(dateInput);
+
+        parentDiv.appendChild(companyDiv);
+        parentDiv.appendChild(priceDiv);
+        parentDiv.appendChild(dateDiv);
+
+        return parentDiv;
+    };
+
 
     function createBuyNumberUi() {
         var length = buyNumberList.length;

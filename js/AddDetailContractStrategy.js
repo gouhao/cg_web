@@ -9,7 +9,7 @@ function AddDetailContractStrategy(listDiv, list) {
 
 AddDetailContractStrategy.prototype = new AddDetailBase();
 
-AddDetailContractStrategy.prototype.createItem = function (number, index) {
+AddDetailContractStrategy.prototype.createItem = function (contractItem, index) {
 
     var pos = index ? index : this.itemCount;
 
@@ -38,7 +38,7 @@ AddDetailContractStrategy.prototype.createItem = function (number, index) {
     companyInput.className = 'item-input';
     companyInput.type = 'text';
     companyInput.placeholder = '请输入中标单位(必填)';
-    companyInput.value = number ? number : '';
+    companyInput.value = contractItem ? contractItem.company : '';
     companyInput.id = 'company' + this.itemCount;
     companyInput.maxLength = '20';
     companyDiv.appendChild(companyLabel);
@@ -53,7 +53,7 @@ AddDetailContractStrategy.prototype.createItem = function (number, index) {
     priceInput.className = 'item-input';
     priceInput.type = 'text';
     priceInput.placeholder = '请输入合同金额(必填)';
-    priceInput.value = number ? number : '';
+    priceInput.value = contractItem ? contractItem.price : '';
     priceInput.id = 'price' + this.itemCount;
     priceInput.maxLength = '20';
 
@@ -69,7 +69,7 @@ AddDetailContractStrategy.prototype.createItem = function (number, index) {
     dateInput.className = 'item-input';
     dateInput.type = 'date';
     dateInput.placeholder = '请输入合同日期(必填)';
-    dateInput.value = number ? number : '';
+    dateInput.value = contractItem ? contractItem.date : '';
     dateInput.id = 'date' + this.itemCount;
     dateInput.maxLength = '20';
 
@@ -88,6 +88,26 @@ AddDetailContractStrategy.prototype.getHttpUrl = function () {
 };
 
 AddDetailContractStrategy.prototype.getHttpRequestData = function () {
+    this.contentList.splice(0, this.contentList.length);
+    for(var i = 0; i < this.itemCount; i++){
+        var contractItem = new Object();
+        var companyInput = document.getElementById('company' + i);
+        if(companyInput.value.trim()) {
+            contractItem.company = companyInput.value;
+        } else {
+            continue;
+        }
 
+        var priceInput = document.getElementById('price' + i);
+        if(priceInput.value.trim()) {
+            contractItem.price = priceInput.value;
+        }
+        var dateInput = document.getElementById('date' + i);
+        if(dateInput.value.trim()) {
+            contractItem.date = dateInput.value;
+        }
+
+        this.contentList.push(contractItem);
+    }
 };
 

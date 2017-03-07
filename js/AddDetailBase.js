@@ -44,7 +44,8 @@ AddDetailBase.prototype.requestSuccess = function (response) {
 
 AddDetailBase.prototype.sendToTarget = function () {
   var target = plus.webview.getWebviewById('apply-details.html');
-  mui.fire(target, this.tag, this.contentList);
+  consoleLog(this.tag, JSON.stringify(this.contentList));
+  mui.fire(target, this.tag, {data:this.contentList});
 };
 
 
