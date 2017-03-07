@@ -27,9 +27,17 @@
 
     };
 
+    function addContentProxy(){
+    	strategy.addContent();	
+    };
+    
+    function sendProxy(){
+    	strategy.send();
+    };
+    
     function initAction() {
-        document.getElementById('addMenuDiv').addEventListener('click', strategy.addContent.bind(strategy));
-        document.getElementById('send').addEventListener('click', strategy.send.bind(strategy));
+        document.getElementById('addMenuDiv').addEventListener('click', addContentProxy);
+        document.getElementById('send').addEventListener('click', sendProxy);
     };
 
     function initUi() {

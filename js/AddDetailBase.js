@@ -20,7 +20,7 @@ AddDetailBase.prototype.send = function () {
   var url = this.getHttpUrl();
   var data = this.getHttpRequestData();
   this.sendToTarget();
-  mui.toast('send request');
+  mui.back();
   // muiPostDataWithAuthorization(url, data, this.requestSuccess);
 };
 
