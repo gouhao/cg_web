@@ -88,8 +88,8 @@
     function initAction() {
         document.getElementById('hideImg').addEventListener('click', clickHide);
         document.getElementById('bottomMenu').addEventListener('click', onButtonClick);
-        window.addEventListener('editNumber', onEditNumber);
-        window.addEventListener('addContract', onAddContract);
+        window.addEventListener(FROM_ADD_NUMBER, onEditNumber);
+        window.addEventListener(FROM_ADD_CONTRACT, onAddContract);
         editBuyNumber.addEventListener('click', onButtonClick);
     };
 
@@ -162,7 +162,8 @@
                 });
                 break;
             case 'buyNumber':
-                muiOpenWindowWithoutWaiting('add-detail.html', {applyId:applyDetail.applyId});
+                muiOpenWindowWithoutWaiting('add-detail.html', {applyId:applyDetail.applyId,
+                    from:FROM_ADD_NUMBER});
                 break;
             case 'editBuyNumber':
                 muiOpenWindowWithoutWaiting('add-detail.html', {applyId:applyDetail.applyId, contentList:buyNumberList,
@@ -215,7 +216,7 @@
     function onAddContract() {
       if(event.detail.data){
           contractList = event.detail.data;
-          consoleLog(TAG, JSON.stringify(buyNumberList));
+          consoleLog(TAG, JSON.stringify(contractList));
           createContractUi();
           checkContractList();
       }

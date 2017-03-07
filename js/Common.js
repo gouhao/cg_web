@@ -18,5 +18,5 @@ var APPLY_STATUS_FINANCE_CHECK = '4';
 var APPLY_STATUS_READY = '5';
 var APPLY_STATUS_GIVEUP = '6';
 
-var FROM_ADD_NUMBER = '11';
-var FROM_ADD_CONTRACT = '12';
+var FROM_ADD_NUMBER = 'AddDetailNumberStrategy';
+var FROM_ADD_CONTRACT = 'AddDetailContractStrategy';

@@ -19,6 +19,7 @@ AddDetailBase.prototype.createItem = function(index, number) {};
 AddDetailBase.prototype.send = function () {
   var url = this.getHttpUrl();
   var data = this.getHttpRequestData();
+  this.sendToTarget();
   mui.toast('send request');
   // muiPostDataWithAuthorization(url, data, this.requestSuccess);
 };
@@ -42,19 +43,10 @@ AddDetailBase.prototype.requestSuccess = function (response) {
 };
 
 AddDetailBase.prototype.sendToTarget = function () {
-  var target = plus.webview.currentWebview();
+  var target = plus.webview.getWebviewById('apply-details.html');
   mui.fire(target, this.tag, this.contentList);
 };
 
-AddDetailBase.prototype.initContentArray = function () {
-    this.contentList.splice(0, this.contentList.length);
-    for(var i = 0; i < this.itemCount; i++){
-        var input = document.getElementById('buyNumber' + i);
-        if(input.value.trim()) {
-            this.contentList.push(input.value);
-        }
-    }
-};
 
 AddDetailBase.prototype.deleteItem = function() {
 	consoleLog(this.tag, JSON.stringify(this.contentList));

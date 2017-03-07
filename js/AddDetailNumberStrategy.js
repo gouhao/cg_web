@@ -2,13 +2,9 @@
  * Created by gouhao on 2017/3/6 0006.
  */
 
-var deleteItemProxy;
-
 function AddDetailNumberStrategy(listDiv, list) {
     this.tag = 'AddDetailNumberStrategy';
     AddDetailBase.call(this, this.tag, listDiv, list);
-    deleteItemProxy = this.deleteItem;
-    deleteItemProxy.bind(this);
 };
 
 AddDetailNumberStrategy.prototype = new AddDetailBase();
@@ -51,5 +47,11 @@ AddDetailNumberStrategy.prototype.getHttpUrl = function () {
 };
 
 AddDetailNumberStrategy.prototype.getHttpRequestData = function () {
-
+    this.contentList.splice(0, this.contentList.length);
+    for(var i = 0; i < this.itemCount; i++){
+        var input = document.getElementById('buyNumber' + i);
+        if(input.value.trim()) {
+            this.contentList.push(input.value);
+        }
+    }
 };

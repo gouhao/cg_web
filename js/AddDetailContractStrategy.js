@@ -25,7 +25,7 @@ AddDetailContractStrategy.prototype.createItem = function (number, index) {
     var deleteLabel = document.createElement('button');
     deleteLabel.innerText = '删除';
     deleteLabel.id = pos + '';
-    deleteLabel.addEventListener('click', this.deleteItem(this));
+    deleteLabel.addEventListener('click', this.deleteItem.bind(this));
     titleDiv.appendChild(deleteLabel);
 
     var input = document.createElement('input');
