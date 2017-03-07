@@ -73,8 +73,12 @@
         checkBuyNumberList();
         if (from == FROM_APPLY_DEAL_PERSON) {
             document.getElementById('dealPersonMenu').style.display = 'block';
+
         } else if (from == FROM_APPLY_BUY_PERSON) {
             document.getElementById('buyPersonMenu').style.display = 'block';
+        } else {
+            //这里用于测试，先把它显示出来，等功能全了，就必须等审批通过了才显示
+            document.getElementById('contractDiv').style.display = 'block';
         }
 
     };

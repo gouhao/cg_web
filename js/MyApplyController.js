@@ -1,4 +1,5 @@
 (function () {
+    var TAG = 'MainApplyController';
     var FLAG_INDEX_IS_FIRST = 0;
     var FLAG_INDEX_IS_REFRESH = 1;
     var FLAG_INDEX_IS_LOAD_MORE = 2;
@@ -47,6 +48,7 @@
     };
 
     function setRefreshUi() {
+        mui('#appliedList').on('tap', '.mui-table-view-cell', onItemClick);
         mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, e) {
             if(index == 0){
                 mui(e).pullToRefresh({
@@ -63,6 +65,9 @@
 
     };
 
+    function onItemClick() {
+        muiOpenWindowWithoutWaiting('apply-details.html', {data:this.id, from:FROM_APPLY_START_PERSON});
+    };
     function applyRefresh() {
         if(flag.get(FLAG_INDEX_IS_REFRESH)) return;
         flag.set(true, FLAG_INDEX_IS_REFRESH);
