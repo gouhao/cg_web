@@ -32,7 +32,7 @@ function commitModify(){
 };
 
 function modifyToServer(data) {
-	muiPostDataAndHeader(HTTP_MODIFY_PASSWORD, HTTP_AUTHORIZATION_HEADER, data, modifySuccess);
+	muiPostDataWithAuthorization(HTTP_MODIFY_PASSWORD, data, modifySuccess);
 };
 
 function modifySuccess(response) {

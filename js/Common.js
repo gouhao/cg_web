@@ -1,7 +1,7 @@
 var KEY_ACCOUNT = 'account';
 var KEY_PASSWORD = 'password';
 var KEY_TOKEN = 'token';
-
+var KEY_IS_GET_PERSON_LIST = 'is_get_person_list';
 var KEY_LOGOUT = 'logout';
 
 var DEFAULT_PAGE_SIZE = 20;

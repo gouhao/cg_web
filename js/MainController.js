@@ -9,7 +9,7 @@
     var user;
 
     function getUserInfo(){
-        muiPostHeader(HTTP_GET_USERINFO, HTTP_AUTHORIZATION_HEADER, getUserInfoSuccess);
+        muiPostDataWithAuthorization(HTTP_GET_USERINFO, '', getUserInfoSuccess);
     };
 
     function getUserInfoSuccess(response) {
@@ -146,7 +146,7 @@
     };
 
     function logout() {
-        muiPostHeader(HTTP_LOGOUT, HTTP_AUTHORIZATION_HEADER, logoutSuccess);
+        muiPostDataWithAuthorization(HTTP_LOGOUT,'',  logoutSuccess);
     };
 
     function logoutSuccess(data) {

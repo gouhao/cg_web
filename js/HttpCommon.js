@@ -2,9 +2,12 @@ var HTTP_TIMEOUT = 10000;
 
 var HTTP_RESULT_SUCCESS = 'success';
 var HTTP_RESULT_ERROR = 'error';
-var HTTP_AUTHORIZATION_HEADER = {
-	'authorization': localStorage.getItem(KEY_TOKEN),
-	'Content-Type': 'application/json'
+
+function getAuthorizationHeader() {
+	return {
+        'authorization': localStorage.getItem(KEY_TOKEN),
+        'Content-Type': 'application/json'
+	};
 };
 
 var HTTP_SERVER = 'http://112.126.68.157:8088/mis/';
@@ -45,6 +48,10 @@ var HTTP_EDIT_CONTRACT = HTTP_SERVER + 'pms.purchase.updatecontractfromserver/gl
 
 var HTTP_DELETE_CONTRACT = HTTP_SERVER + 'pms.purchase.updatecontractfromserver/global';
 
+var HTTP_GET_AREA_LIST = HTTP_SERVER + 'pes.orgstructure.getallorgstructurefromserver/global';
+
+var HTTP_GET_PERSON_LIST = HTTP_SERVER + 'pes.pesuser.getpesuserbyorgstructurefromserver/global';
+
 function muiPost(url, dataObject, successFun, errorFun) {
 	var jsonStr = JSON.stringify(dataObject);
 	console.log('url:' + url + ', data:' + jsonStr);
@@ -74,7 +81,7 @@ function muiPostHeader(url, headerObject, successFun, errorFun) {
 };
 
 function muiPostDataWithAuthorization(url, dataObject, successFun, errorFun) {
-	muiPostDataAndHeader(url, HTTP_AUTHORIZATION_HEADER, dataObject, successFun, errorFun);	
+	muiPostDataAndHeader(url, getAuthorizationHeader(), dataObject, successFun, errorFun);
 };
 
 function muiPostDataAndHeader(url, headerObject, dataObject, successFun, errorFun) {

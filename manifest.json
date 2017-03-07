@@ -220,7 +220,10 @@
 					"js/HttpCommon.js",
 					"js/app.js",
 					"js/UserSession.js",
-					"js/mui.js"
+					"js/mui.js",
+					"js/Database.js",
+					"js/LoginController.js",
+					"js/CreatePersonListWorker.js"
 				],
 				"refer": [
 					"main.html"
@@ -466,7 +469,11 @@
 					"css/mui.min.css",
 					"js/Department.js",
 					"js/Person.js",
-					"js/app.js"
+					"js/app.js",
+					"js/SharePersonController.js",
+					"css/base.css",
+					"js/HttpCommon.js",
+					"js/Common.js"
 				],
 				"refer": [],
 				"priority": 0
