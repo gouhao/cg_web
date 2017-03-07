@@ -227,6 +227,7 @@
     };
 
     function createContractUi() {
+        removeElementNode(contractListDiv);
         var length = contractList.length;
         for(var i = 0; i < length; i++) {
             contractListDiv.appendChild(createItem(contractList[i], i));

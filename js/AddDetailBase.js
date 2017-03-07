@@ -9,12 +9,12 @@ function AddDetailBase(tag, listDiv, list) {
 };
 
 AddDetailBase.prototype.addContent = function (number, index) {
-    var div = this.createItem(index, number);
+    var div = this.createItem(number, index);
     this.listParentDiv.appendChild(div);
     this.itemCount++;
 };
 
-AddDetailBase.prototype.createItem = function(index, number) {};
+AddDetailBase.prototype.createItem = function(number, index) {};
 
 AddDetailBase.prototype.send = function () {
   var url = this.getHttpUrl();
