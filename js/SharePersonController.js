@@ -4,13 +4,24 @@
 (function () {
     var TAG = 'SharePersonController';
 
-    var parentDepartment;
+    var parentDepartment = new Department();
     var currentDepartment;
     var contactsDiv;
     var folderDepartment = new Array();
     var folderDepartmentDiv;
     var selectedIds = new Array();
     var areaList, personList;
+
+    mui.init({
+        beforeback:onBack
+    });
+
+    function onBack() {
+      parentDepartment = null;
+      currentDepartment = null;
+      areaList = null;
+      personList = null;
+    };
     mui.plusReady(function() {
         mui('.mui-scroll-wrapper').scroll({
             indicators: true
@@ -81,7 +92,7 @@
 
       for(var k in dataList) {
           if(!dataList[k].parentCode) {
-              parentDepartment = dataList[k];
+              parentDepartment.sonDepartmentList.push(dataList[k]);
               return;
           }
       }
