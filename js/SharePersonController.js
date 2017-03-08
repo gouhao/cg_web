@@ -66,44 +66,6 @@
 
     };
 
-    function compare(obj1, obj2) {
-        return obj1.displaySort - obj2.displaySort;
-    };
-
-    function dealPerson() {
-        var dataList = [];
-      for(var i in areaList) {
-          var item = areaList[i];
-          var department = new Department(item);
-          for(var j = 0; j < personList.length; j++) {
-              var subItem = personList[j];
-              if(subItem.orgStructure == item.codeName) {
-                  department.personList.push(subItem);
-              }
-          };
-          dataList.push(department);
-      }
-      dealArea(dataList)
-    };
-
-    function dealArea(dataList) {
-      for(var i in dataList) {
-          var item = dataList[i];
-          for(var j in dataList) {
-              if(dataList[j].parentCode == item.codeName) {
-                  item.sonDepartmentList.push(dataList[j]);
-              }
-          }
-      }
-
-      for(var k in dataList) {
-          if(!dataList[k].parentCode) {
-              parentDepartment.sonDepartmentList.push(dataList[k]);
-              return;
-          }
-      }
-    };
-
     function getContacts(callback) {
         var database = new GetPersonListWorker();
         database.getAreaList(function (result) {
