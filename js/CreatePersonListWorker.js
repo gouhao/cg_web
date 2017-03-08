@@ -10,8 +10,10 @@ function CreatePersonListWorker(callback) {
 CreatePersonListWorker.prototype = new Database();
 
 CreatePersonListWorker.prototype.start = function () {
-    this.initDatabase();
-    this.getArea();
+    this.initDatabase(function () {
+        this.getArea();
+    });
+
 };
 
 CreatePersonListWorker.prototype.getArea = function () {
@@ -22,7 +24,7 @@ CreatePersonListWorker.prototype.getArea = function () {
 CreatePersonListWorker.prototype.getAreaSuccess = function (response) {
     consoleLog(this.TAG, JSON.stringify(response));
     if (response.result == HTTP_RESULT_SUCCESS) {
-        this.saveToDb(this.TABLE_AREA, response.data);
+        this.saveToDb(this.TABLE_DATA, response.data);
         this.getPerson();
     } else {
         consoleLog(this.TAG, 'get area error');
@@ -35,12 +37,9 @@ CreatePersonListWorker.prototype.saveToDb = function (tableName, list) {
         var transaction=db.transaction(tableName,this.READ_WRITE);
         var store=transaction.objectStore(tableName);
         var request;
-        for (var i in list) {
-            request = store.put(list[i]);
+            request = store.put(list);
             request.onerror = this.defaultDatabaseError;
             request.onsuccess = this.defaultDatabaseSuccess;
-        }
-        consoleLog(this.TAG, 'save count:' + i);
     });
 
 };
@@ -53,7 +52,7 @@ CreatePersonListWorker.prototype.getPerson = function () {
 CreatePersonListWorker.prototype.getPersonSuccess = function (response) {
     consoleLog(this.TAG, JSON.stringify(response));
     if (response.result == HTTP_RESULT_SUCCESS) {
-        this.saveToDb(this.TABLE_PERSON, response.data);
+        this.saveToDb(this.TABLE_DATA, response.data);
         this.notifyCaller(HTTP_RESULT_SUCCESS);
     } else {
         consoleLog(this.TAG, 'get person error');

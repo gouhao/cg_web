@@ -111,20 +111,11 @@
         database.getAreaList(function (result) {
            if(result.length > 0) {
                consoleLog(TAG, 'area list length: ' + result.length);
-               areaList = result;
-               database.getPersonList(function (result) {
-                   if(result.length > 0) {
-                       consoleLog(TAG, 'person list length: ' + result.length);
-                       personList = result;
-                       if(callback) {
-                           callback(HTTP_RESULT_SUCCESS);
-                       }
-                   } else {
-                       if(callback) {
-                           callback(HTTP_RESULT_ERROR);
-                       }
-                   }
-               });
+               areaList = result[0];
+               personList = result[1];
+               if(callback) {
+                   callback(HTTP_RESULT_SUCCESS);
+               }
            }  else {
                if(callback) {
                    callback(HTTP_RESULT_ERROR);

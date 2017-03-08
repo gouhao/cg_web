@@ -27,9 +27,5 @@ GetPersonListWorker.prototype.getDataFromTable = function(tableName, callback) {
     });
 }
 GetPersonListWorker.prototype.getAreaList = function (callback) {
-    this.getDataFromTable(this.TABLE_AREA, callback);
-};
-
-GetPersonListWorker.prototype.getPersonList = function (callback) {
-    this.getDataFromTable(this.TABLE_PERSON, callback);
+    this.getDataFromTable(this.TABLE_DATA, callback);
 };
