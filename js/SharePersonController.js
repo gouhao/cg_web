@@ -41,9 +41,9 @@
 //      }
         getContacts(function (result) {
             if(result == HTTP_RESULT_SUCCESS) {
-                consoleLog('get database success');
+                consoleLog(TAG, 'get database success');
             } else {
-                consoleLog('get database error');
+                consoleLog(TAG, 'get database error');
             }
         });
         // createTestDepartmentData();
@@ -54,7 +54,7 @@
     var areaList, personList;
 
     function getContacts(callback) {
-        var database = new GetPersonListWorker();
+        var database = new GetPersonListWorker();consoleLog(TAG, 'get area list');
         database.getAreaList(function (result) {
            if(result.length > 0) {
                consoleLog(TAG, 'area list length: ' + result.length);
