@@ -34,13 +34,13 @@ CreatePersonListWorker.prototype.saveToDb = function (tableName, list) {
     this.openDatabase(function (db) {
         var transaction=db.transaction(tableName,'readwrite');
         var store=transaction.objectStore(tableName);
-
         var request;
         for (var i in list) {
-            request = store.add(list[i]);
+            request = store.put(list[i]);
             request.onerror = this.defaultDatabaseError;
             request.onsuccess = this.defaultDatabaseSuccess;
         }
+        consoleLog(this.TAG, 'save count:' + i);
     });
 
 };
