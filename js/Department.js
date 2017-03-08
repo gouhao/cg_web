@@ -1,7 +1,14 @@
-function Department() {
-	this.id = undefined;
-	this.name = undefined;
-	this.parent = undefined;
-	this.sonDepartmentList = new Array;
-	this.personList = new Array;
+
+function Department(obj) {
+	if(obj) {
+        this.id = obj.id;
+        this.codeName = obj.codeName;
+        this.category = obj.category;
+        this.description = obj.description;
+        this.parentCode = obj.parentCode;
+        this.displaySort = obj.displaySort;
+        this.levelNum = obj.levelNum;
+	}
+	this.sonDepartmentList = [];
+	this.personList = [];
 };

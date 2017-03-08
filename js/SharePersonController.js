@@ -4,20 +4,19 @@
 (function () {
     var TAG = 'SharePersonController';
 
-    var parentDepartment = new Department();
+    var parentDepartment;
     var currentDepartment;
     var contactsDiv;
     var folderDepartment = new Array();
     var folderDepartmentDiv;
     var selectedIds = new Array();
-
+    var areaList, personList;
     mui.plusReady(function() {
         mui('.mui-scroll-wrapper').scroll({
             indicators: true
         });
         initData();
-        initUi();
-        initAction();
+
     });
 
     function initAction() {
@@ -42,16 +41,51 @@
         getContacts(function (result) {
             if(result == HTTP_RESULT_SUCCESS) {
                 consoleLog(TAG, 'get database success');
+                dealPerson();
+                folderDepartment.push(parentDepartment);
+                initUi();
+                initAction();
             } else {
                 consoleLog(TAG, 'get database error');
             }
         });
-        // createTestDepartmentData();
-        // folderDepartment.push(parentDepartment);
+
 
     };
 
-    var areaList, personList;
+    function dealPerson() {
+        var dataList = [];
+      for(var i in areaList) {
+          var item = areaList[i];
+          var department = new Department(item);
+          for(var j = 0; j < personList.length; j++) {
+              var subItem = personList[j];
+              if(subItem.orgStructure == item.codeName) {
+                  department.personList.push(subItem);
+              }
+          };
+          dataList.push(department);
+      }
+      dealArea(dataList)
+    };
+
+    function dealArea(dataList) {
+      for(var i in dataList) {
+          var item = dataList[i];
+          for(var j in dataList) {
+              if(dataList[j].parentCode == item.codeName) {
+                  item.sonDepartmentList.push(dataList[j]);
+              }
+          }
+      }
+
+      for(var k in dataList) {
+          if(!dataList[k].parentCode) {
+              parentDepartment = dataList[k];
+              return;
+          }
+      }
+    };
 
     function getContacts(callback) {
         var database = new GetPersonListWorker();consoleLog(TAG, 'get area list');
@@ -90,7 +124,7 @@
     function createDepartmentUi(item) {
         removeElementNode(contactsDiv);
         for (var j in item.sonDepartmentList) {
-            var li = createLiItem(item.sonDepartmentList[j].name);
+            var li = createLiItem(item.sonDepartmentList[j].description);
             li.id = j;
             li.addEventListener('click', function() {
                 currentDepartment = currentDepartment.sonDepartmentList[this.getAttribute('id')];
