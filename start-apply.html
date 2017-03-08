@@ -46,6 +46,25 @@
 				text-align: center;
 				padding: 10px;
 			}
+
+			.add-button:active{
+				src: url(png/icon_add_press.png)
+			}
+			.share-person-avatar {
+				background-color: #2ac845;
+				width: 64px;
+				height: 64px;
+				margin-right: 10px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 64px;
+				float: left;
+			}
+
+			.share-person-text {
+				font-size: 12px;
+				color: #FFFFFF;
+			}
 		</style>
 	</head>
 
@@ -75,14 +94,14 @@
 			<div class="applyAttachment">
 				<h4>附件</h4>
 				<div id="attachmentList">
-					<img id="addAttachmentImg" src="qq.png" />
+					<img id="addAttachmentImg"  class="add-button" src="png/icon_add.png" />
 				</div>
 
 			</div>
 			<div class="applyNotify">
 				<h4>知会人<span>(提交申请后,同时共享以下人员)</span></h4>
 				<div id="notify">
-					<img id="addNotifyImg" src="qq.png" />
+					<img id="addNotifyImg" ss="add-button" src="png/icon_add.png" />
 				</div>
 
 			</div>

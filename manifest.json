@@ -405,7 +405,8 @@
 					"js/StartApplyController.js",
 					"css/base.css",
 					"js/HttpCommon.js",
-					"js/Common.js"
+					"js/Common.js",
+					"png/icon_add.png"
 				],
 				"refer": [
 					"product-details.html",

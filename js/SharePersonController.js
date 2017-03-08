@@ -45,10 +45,11 @@
     };
 
     function initData() {
-//      var self = plus.webview.currentWebview();
-//      if(self.shareList.length > 0) {
-//          Array.prototype.push.apply(selectedIds, self.shareList);
-//      }
+     var self = plus.webview.currentWebview();
+        var shareList = self.extras.shareList;
+        if(shareList.length > 0) {
+         Array.prototype.push.apply(selectedIds, shareList);
+     }
         parentDepartment.id = '1';
         parentDepartment.description = '组织架构';
         getContacts(function (result) {
@@ -216,7 +217,7 @@
         }
         checkBox.addEventListener('click', function(){
             if(this.checked) {
-                selectedIds.push(this.value);
+                selectedIds.push(item);
             } else {
                 removeSelectId(this.value);
             }
@@ -228,7 +229,7 @@
 
     function containsSelectedItem(item) {
         for(var i in selectedIds) {
-            if(selectedIds[i] == item) {
+            if(selectedIds[i].id == item) {
                 return true;
             }
         }
@@ -237,7 +238,7 @@
     function removeSelectId(id) {
         for(var i in selectedIds) {
             var t = selectedIds[i];
-            if(t == id){
+            if(t.id == id){
                 selectedIds.splice(i, 1);
                 return;
             }
@@ -250,43 +251,6 @@
         li.style.listStylePosition = 'inside';
         li.innerText = liText;
         return li;
-    };
-
-    function createTestDepartmentData() {
-        parentDepartment.id = 1;
-        parentDepartment.name = '联系人';
-
-        var d1 = new Department;
-        d1.id = 4;
-        d1.name = '西安分公司';
-
-        var d2 = new Department;
-        d2.id = 5;
-        d2.name = '郑州总公司';
-
-        var item1 = new Department;
-        item1.id = 2;
-        item1.name = 'APK组';
-        for (var i = 10; i < 20; i++) {
-            var person = new Person;
-            person.id = i;
-            person.name = 'APK Person' + (i - 10);
-            item1.personList.push(person);
-        }
-        var item2 = new Department;
-        item2.id = 3;
-        item2.name = 'ROM组';
-        for (var i = 20; i < 30; i++) {
-            var person = new Person;
-            person.id = i;
-            person.name = 'ROM Person' + (i - 20);
-            item2.personList.push(person);
-        }
-        d1.sonDepartmentList.push(item1);
-        d1.sonDepartmentList.push(item2);
-
-        parentDepartment.sonDepartmentList.push(d2);
-        parentDepartment.sonDepartmentList.push(d1);
     };
 
 })();
