@@ -49,9 +49,12 @@
 //      if(self.shareList.length > 0) {
 //          Array.prototype.push.apply(selectedIds, self.shareList);
 //      }
+        parentDepartment.id = '1';
+        parentDepartment.description = '组织架构';
         getContacts(function (result) {
             if(result == HTTP_RESULT_SUCCESS) {
                 consoleLog(TAG, 'get database success');
+                areaList.sort(compare);
                 dealPerson();
                 folderDepartment.push(parentDepartment);
                 initUi();
@@ -62,6 +65,10 @@
         });
 
 
+    };
+
+    function compare(obj1, obj2) {
+        return obj1.displaySort - obj2.displaySort;
     };
 
     function dealPerson() {
@@ -141,9 +148,7 @@
                 currentDepartment = currentDepartment.sonDepartmentList[this.getAttribute('id')];
                 createDepartmentUi(currentDepartment);
                 folderDepartment.push(currentDepartment);
-                if(folderDepartment.length > 1) {
-                    createFolderDepartment();
-                }
+                createFolderDepartment();
             });
             contactsDiv.appendChild(li);
         }
@@ -161,7 +166,7 @@
 
             var label = document.createElement('label');
             label.id = item.id;
-            label.innerText = item.name;
+            label.innerText = item.description;
             label.addEventListener('click', function(){
                 var id = this.getAttribute('id');
                 if(id != folderDepartment[folderDepartment.length - 1].id) {
@@ -180,7 +185,7 @@
 
     function removeFolderDepartmentDiv(id) {
         if(id != -1) {
-            while(folderDepartment[folderDepartment.length - 1].id != id) {
+            while(folderDepartment.length > 1 && folderDepartment[folderDepartment.length - 1].id != id) {
                 folderDepartment.pop();
             }
         }
@@ -189,7 +194,6 @@
             createFolderDepartment();
         } else {
             removeElementNode(folderDepartmentDiv);
-            folderDepartmentDiv.style.display = 'none';
         }
 
         currentDepartment = folderDepartment[folderDepartment.length - 1];
