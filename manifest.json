@@ -223,7 +223,8 @@
 					"js/mui.js",
 					"js/Database.js",
 					"js/LoginController.js",
-					"js/CreatePersonListWorker.js"
+					"js/CreatePersonListWorker.js",
+					"js/Department.js"
 				],
 				"refer": [
 					"main.html"

@@ -55,8 +55,6 @@
         getContacts(function (result) {
             if(result == HTTP_RESULT_SUCCESS) {
                 consoleLog(TAG, 'get database success');
-                areaList.sort(compare);
-                dealPerson();
                 folderDepartment.push(parentDepartment);
                 initUi();
                 initAction();
@@ -107,12 +105,10 @@
     };
 
     function getContacts(callback) {
-        var database = new GetPersonListWorker();consoleLog(TAG, 'get area list');
+        var database = new GetPersonListWorker();
         database.getAreaList(function (result) {
-           if(result.length > 0) {
-               consoleLog(TAG, 'area list length: ' + result.length);
-               areaList = result[0];
-               personList = result[1];
+           if(result) {
+               parentDepartment = result;
                if(callback) {
                    callback(HTTP_RESULT_SUCCESS);
                }
