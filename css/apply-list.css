@@ -36,15 +36,11 @@ li {
 	width: 52px;
 	height: 52px;
 	border-radius: 50%;
-	position: relative;
+	text-align: center;
+	line-height: 52px;
 }
 
 .apply-status-text {
-	width:52px;
-	height: 52px;
 	color: #FFFFFF;
-	position: absolute;
-	top: 15px;
-	left: 10px;
 	font-size: 12px;
 }
