@@ -32,7 +32,7 @@ CreatePersonListWorker.prototype.getAreaSuccess = function (response) {
 
 CreatePersonListWorker.prototype.saveToDb = function (tableName, list) {
     this.openDatabase(function (db) {
-        var transaction=db.transaction(tableName,'readwrite');
+        var transaction=db.transaction(tableName,this.READ_WRITE);
         var store=transaction.objectStore(tableName);
         var request;
         for (var i in list) {

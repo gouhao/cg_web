@@ -39,13 +39,46 @@
 //      if(self.shareList.length > 0) {
 //          Array.prototype.push.apply(selectedIds, self.shareList);
 //      }
-        getContacts();
+        getContacts(function (result) {
+            if(result == HTTP_RESULT_SUCCESS) {
+                consoleLog('get database success');
+            } else {
+                consoleLog('get database error');
+            }
+        });
         // createTestDepartmentData();
         // folderDepartment.push(parentDepartment);
 
     };
 
+    var areaList, personList;
 
+    function getContacts(callback) {
+        var database = new GetPersonListWorker();
+        database.getAreaList(function (result) {
+           if(result.length > 0) {
+               consoleLog(TAG, 'area list length: ' + result.length);
+               areaList = result;
+               database.getPersonList(function (result) {
+                   if(result.length > 0) {
+                       consoleLog(TAG, 'person list length: ' + result.length);
+                       personList = result;
+                       if(callback) {
+                           callback(HTTP_RESULT_SUCCESS);
+                       }
+                   } else {
+                       if(callback) {
+                           callback(HTTP_RESULT_ERROR);
+                       }
+                   }
+               });
+           }  else {
+               if(callback) {
+                   callback(HTTP_RESULT_ERROR);
+               }
+           }
+        });
+    };
     function initUi() {
         contactsDiv = document.getElementById('contactsList');
         folderDepartmentDiv = document.getElementById('folderDepartment');

@@ -8,9 +8,8 @@ function Database() {
     this.TABLE_PERSON = 'table_person';
     this.version = 3;
     this.dbName = 'cg';
-    this.IDBTransaction = {};
-    this.IDBTransaction.READ_WRITE = 'readwrite';
-    this.IDBTransaction.READ_ONLY = 'readonly';
+    this.READ_WRITE = 'readwrite';
+    this.READ_ONLY = 'readonly';
     this.indexedDb = window.indexedDB || window.msIndexedDB || window.mozIndexedDB || window.webkitIndexedDB;
 };
 
@@ -37,7 +36,7 @@ Database.prototype.openDatabase = function (callback) {
     request.onerror = fError;
 
     var suc = function(event) {
-         callback(event.target.result);
+         callback.call(this, event.target.result);
     };
     var fSuc = suc.bind(this);
     request.onsuccess = fSuc;

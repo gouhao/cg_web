@@ -473,7 +473,9 @@
 					"js/SharePersonController.js",
 					"css/base.css",
 					"js/HttpCommon.js",
-					"js/Common.js"
+					"js/Common.js",
+					"js/Database.js",
+					"js/GetPersonListWorker.js"
 				],
 				"refer": [],
 				"priority": 0
