@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/base.css" rel="stylesheet"/>
+    <style>
+        .mui-scroll-wrapper{
+            top: 80px;
+        }
+    </style>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <img class="mui-action-back mui-pull-left" src="png/icon_back.png"/>
+    <h1 class="mui-title">采购单位</h1>
+</header>
+
+<div class="mui-content">
+    <div class="mui-input-row mui-search">
+        <input type="search" class="mui-input-clear" placeholder="搜索单位名称">
+    </div>
+
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <form id="contentList" class="mui-input-group ">
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="js/mui.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/Common.js"></script>
+<script src="js/HttpCommon.js"></script>
+<script src="js/SelectUnitController.js"></script>
+</body>
+</html>

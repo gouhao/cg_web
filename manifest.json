@@ -407,11 +407,16 @@
 					"css/base.css",
 					"js/HttpCommon.js",
 					"js/Common.js",
-					"png/icon_add.png"
+					"png/icon_add.png",
+					"js/mui.picker.min.js",
+					"png/icon_main_item_right.png",
+					"png/icon_back.png",
+					"png/icon_lite_item_right.png"
 				],
 				"refer": [
 					"product-details.html",
-					"share-person.html"
+					"share-person.html",
+					"select-unit.html"
 				],
 				"priority": 0
 			},
@@ -649,6 +654,21 @@
 					"css/mui.min.css",
 					"js/Common.js",
 					"png/icon_back.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"select-unit.html": {
+				"resources": [
+					"js/SelectUnitController.js",
+					"png/icon_back.png",
+					"js/app.js",
+					"css/base.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"js/HttpCommon.js",
+					"css/mui.min.css",
+					"js/Common.js"
 				],
 				"refer": [],
 				"priority": 0

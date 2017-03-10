@@ -1,14 +1,6 @@
 (function () {
-    /**
-	 *var STATUS_APPLYING_COLOR = '#7cc0f8';
-     var STATUS_REFUSE_COLOR = '#ff847b';
-     var STATUS_PASS_COLOR = '#28d8a5';
-     var STATUS_READY_COLOR = '#ffc926';
-     var STATUS_FINISH_COLOR = '#4fc3ff';
-     var STATUS_GIVE_UP_COLOR = '#f989c0';
-     var STATUS_FINANCE_CHECKING_COLOR = '#f989c0';
-     * @type {[*]}
-     */
+    var TAG = 'StartApplyController';
+
 	var bgColorList = ['#7cc0f8', '#ff847b', '#28d8a5', '#ffc926', '#4fc3ff', '#f989c0'];
     var detailNum = -1;
     var detailList = new Array();
@@ -16,12 +8,14 @@
     var notifyDiv;
     var attachmentImgList = new Array();
     var saveUrls = [];
+    var unitList = [], buyUnitLabel;
     var applyTitileInput, applyMarkInput, totalPriceSpan;
+    var selectUnit;
+
     mui.plusReady(function() {
         initViews();
         initAction();
     });
-
     function initAction() {
         document.getElementById('addAttachmentImg').addEventListener('click', selectPicture);
         document.getElementById('addNotifyImg').addEventListener('click', function() {
@@ -29,8 +23,18 @@
         });
         document.getElementById('addDetailDiv').addEventListener('click', addNewDetail);
         document.getElementById('submit').addEventListener('click', submitApply);
+        document.getElementById('buyUnit').addEventListener('click', selectBuyUnit);
         window.addEventListener('addNewDetail', createNewDetail);
         window.addEventListener('addNewSharePerson', addNewSharePerson);
+        window.addEventListener('selectUnit', onSelectUnit);
+    };
+
+    function onSelectUnit(event) {
+            selectUnit = event.detail.selectUnit;
+    };
+
+    function selectBuyUnit() {
+        muiOpenWindowWithoutWaiting('select-unit.html', {selectUnit:selectUnit});
     };
 
     function selectPicture() {
@@ -137,6 +141,7 @@
         applyTitileInput = document.getElementById('applyTitle');
         applyMarkInput = document.getElementById('applyMark');
         totalPriceSpan = document.getElementById('totalPrice');
+        buyUnitLabel = document.getElementById('buyUnitLabel');
     };
 
     function addNewSharePerson(result) {

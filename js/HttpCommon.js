@@ -60,6 +60,7 @@ var HTTP_QUERY_PUSH_MESSAGE = HTTP_SERVER + 'pms.purchase.getapplycountfromserve
 
 var HTTP_SET_YEAR = HTTP_SERVER + 'pms.purchasebatch.getpurchasebatchfromserver/global';
 
+var HTTP_QUERY_UNIT = HTTP_SERVER + 'pms.purchasedepartment.getpurchasedepartmentfromserver/global';
 function muiPost(url, dataObject, successFun, errorFun) {
 	var jsonStr = JSON.stringify(dataObject);
 	console.log('url:' + url + ', data:' + jsonStr);

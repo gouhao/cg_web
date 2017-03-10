@@ -7,14 +7,7 @@
 		<title></title>
 		<link rel="stylesheet" href="css/base.css" />
 		<link href="css/mui.min.css" rel="stylesheet" />
-		
-		<script type="text/javascript" src="js/Common.js" ></script>
-		<script type="text/javascript" src="js/HttpCommon.js" ></script>
-		<script src="js/mui.min.js"></script>
-		<script src="js/ProductDetail.js"></script>
-		<script src="js/app.js"></script>
-		
-		<script type="text/javascript" src="js/StartApplyController.js" ></script>
+		<link href="css/mui.picker.min.css"/>
 		<style>
 			.applyAttachment,
 			.applyDetail,
@@ -65,6 +58,21 @@
 				font-size: 12px;
 				color: #FFFFFF;
 			}
+			#buyUnit {
+				width: 100%;
+				height: 24px;
+				position: relative;
+			}
+			#buyUnit img{
+				position: absolute;
+				width: 12px;
+				height: 15px;
+				right: 10px;
+			}
+			
+			.applyMoney{
+				margin-top: 20px;
+			}
 		</style>
 	</head>
 
@@ -85,6 +93,13 @@
 			</div>
 			<div id="addDetailDiv" class="addDetail">
 				<h4>增加明细</h4>
+			</div>
+			<div id="buyUnit">
+				<hr />
+				<label>采购单位</label>
+				<label id="buyUnitLabel"></label>
+				<img src="png/icon_lite_item_right.png">
+				<hr/>
 			</div>
 			<div class="applyMoney">
 				<h4>合计金额：<span id="totalPrice">3000</span>元</h4>
@@ -108,6 +123,15 @@
 			<button id="submit" class="mui-btn-block mui-btn-blue">提交</button>
 		</div>
 		</div>
+
+
+		<script type="text/javascript" src="js/Common.js" ></script>
+		<script type="text/javascript" src="js/HttpCommon.js" ></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/ProductDetail.js"></script>
+		<script type="text/javascript" src="js/StartApplyController.js" ></script>
 	</body>
 
 </html>
