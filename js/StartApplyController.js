@@ -17,7 +17,6 @@
     var attachmentImgList = new Array();
     var saveUrls = [];
     var applyTitileInput, applyMarkInput, totalPriceSpan;
-    var shareUserList = [];
     mui.plusReady(function() {
         initViews();
         initAction();
@@ -110,11 +109,20 @@
         var uploadInfo = {
             jsonObjectApply:applyInfo,
             jsonArrayApplyItem : detailList,
-            jsonArrayShareUserAccounts : shareUserList
+            jsonArrayShareUserAccounts : getSharePersonAccounts()
         };
         muiPostDataWithAuthorization(HTTP_ADD_NEW_APPLY, uploadInfo, addNewApplySuccess);
     };
 
+    function getSharePersonAccounts() {
+      var result = [];
+      for(var i in sharePersonList) {
+          var item = new Object();
+          item.shareUserAccount = sharePersonList[i].account;
+          result.push(item);
+        }
+        return result;
+    };
     function addNewApplySuccess(response) {
         console.log('add new apply: ' + JSON.stringify(response));
         if(response.result == HTTP_RESULT_SUCCESS) {
