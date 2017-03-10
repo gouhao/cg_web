@@ -56,6 +56,8 @@ var HTTP_QUERY_NOTIFY_MESSAGE_LIST = HTTP_SERVER + 'system.pnmessage.getpnmessag
 
 var HTTP_UPDATE_NOTIFY_MESSAGE_LIST = HTTP_SERVER + 'system.pnmessage.updatepnmessagereadfromserver/global';
 
+var HTTP_QUERY_PUSH_MESSAGE = HTTP_SERVER + 'pms.purchase.getapplycountfromserver/global';
+
 function muiPost(url, dataObject, successFun, errorFun) {
 	var jsonStr = JSON.stringify(dataObject);
 	console.log('url:' + url + ', data:' + jsonStr);

@@ -7,6 +7,9 @@
     var usernameDiv, policeCodeSpan;
 
     var user;
+
+    var waitDealCountLabel, waitBuyCountLabel, notifyCountLabel;
+
     function getUserInfo(){
         muiPostDataWithAuthorization(HTTP_GET_USERINFO, '', getUserInfoSuccess);
     };
@@ -49,7 +52,34 @@
         initAction();
         getUserInfo();
         getNotifyMessageList();
+        getPushMessageCount();
     });
+
+    function getPushMessageCount() {
+        muiPostDataWithAuthorization(HTTP_QUERY_PUSH_MESSAGE, '', getPushMessageSuccess);
+    };
+
+    function getPushMessageSuccess(response) {
+      consoleLog(TAG, 'get push message:' + JSON.stringify(response));
+      if(response.result == HTTP_RESULT_SUCCESS) {
+          updatePushMessageUi(response.data);
+      } else {
+          consoleLog(TAG, 'get push message error');
+      }
+    };
+
+    function updatePushMessageUi(data) {
+        if(data.totalNum > 0) {
+            waitDealCountLabel.style.display = 'block';
+            waitDealCountLabel.innerText = data.totalNum;
+        }
+
+        if(data.myAttentionNum > 0) {
+            waitBuyCountLabel.style.display = 'block';
+            waitBuyCountLabel.innerText = data.myAttentionNum;
+        }
+
+    };
 
     function getNotifyMessageList() {
         var data = {
@@ -61,7 +91,7 @@
     };
 
     function getNotifyMessageListSuccess(response){
-        consoleLog(TAG, JSON.stringify(response));
+        consoleLog(TAG, 'get notify message:' + JSON.stringify(response));
         if(response.result == HTTP_RESULT_SUCCESS) {
             updateNotifyMessageUi(response.data);
         } else {
@@ -71,7 +101,7 @@
 
     function updateNotifyMessageUi(data) {
         if(data.totalRecord > 0) {
-            document.getElementById('notifyMessageCount').style.display = 'block';
+            notifyCountLabel.style.display = 'block';
         }
     };
 
@@ -92,6 +122,11 @@
 
         usernameDiv = document.getElementById('username');
         policeCodeSpan = document.getElementById('policeCode');
+
+        waitDealCountLabel = document.getElementById('waitDealCount');
+        waitBuyCountLabel = document.getElementById('waitBuyCount');
+        notifyCountLabel = document.getElementById('notifyCount');
+
     };
     function initAction() {
         mui('#menu').on('tap', '.mui-table-view-cell', menuClick);

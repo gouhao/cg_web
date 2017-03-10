@@ -43,9 +43,9 @@
 				position: relative;
 			}
 			
-			.apply-red-tip {
-				width: 10px;
-				height: 10px;
+			.notify-red-tip {
+				width: 14px;
+				height: 14px;
 				border-radius: 50%;
 				background-color: red;
 				position: absolute;
@@ -53,6 +53,15 @@
 				right: 0;
 				margin-top: 5px;
 				margin-right: 5px;
+			}
+
+			.apply-red-tip {
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				background-color: red;
+				text-align: center;
+				line-height: 24px;
 			}
 			
 			#messageBtn {
@@ -135,7 +144,7 @@
 					<img id="meBtn" class="mui-pull-left" src="png/main_header_left.png"></button>
 					<div id="messageBtn" class="mui-pull-right">
 						<img src="png/main_header_right.png"></img>
-						<label id="notifyMessageCount" class="apply-red-tip" style="margin-top: 0px; margin-right: 0px; display: none;"></label>
+						<label id="notifyCount" class="notify-red-tip" style="margin-top: 0px; margin-right: 0px; display: none;"></label>
 					</div>
 
 					<h1 class="mui-title">采购审批</h1>
@@ -157,16 +166,19 @@
 									<img class="menu-item-icon" src="png/icon_main_wait_apply.png" />
 									<label>待我审批</label>
 									<img class="menu-item-nav" src="png/icon_main_item_right.png" />
+									<label id="waitDealCount" class="apply-red-tip none"></label>
 								</div>
-								<label class="apply-red-tip" style="display: none;">3</label>
+								
 							</li>
 							<li id="waitMeBuy" class="mui-table-view-cell">
 								<div class="menu-item">
 									<img class="menu-item-icon" src="png/icon_main_wait_apply.png" />
 									<label>待我采购</label>
-									<img class="menu-item-nav" src="png/icon_main_item_right.png" />
+									<img  class="menu-item-nav" src="png/icon_main_item_right.png" />
+									<label id="waitBuyCount" class="apply-red-tip none"></label>
+									
 								</div>
-								<label class="apply-red-tip" style="display: none;">3</label>
+								
 							</li>
 							<li id="myShare" class="mui-table-view-cell">
 								<div class="menu-item">
