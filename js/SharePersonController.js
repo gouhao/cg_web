@@ -86,6 +86,7 @@
         folderDepartmentDiv = document.getElementById('folderDepartment');
 
         currentDepartment = parentDepartment;
+        document.querySelector('.mui-loading').style.display = 'none';
         createDepartmentUi(parentDepartment);
     };
 
