@@ -52,6 +52,10 @@ var HTTP_GET_AREA_LIST = HTTP_SERVER + 'pes.orgstructure.getallorgstructurefroms
 
 var HTTP_GET_PERSON_LIST = HTTP_SERVER + 'pes.pesuser.getpesuserbyorgstructurefromserver/global';
 
+var HTTP_QUERY_NOTIFY_MESSAGE_LIST = HTTP_SERVER + 'system.pnmessage.getpnmessagebypagefromserver/global';
+
+var HTTP_UPDATE_NOTIFY_MESSAGE_LIST = HTTP_SERVER + 'system.pnmessage.updatepnmessagereadfromserver/global';
+
 function muiPost(url, dataObject, successFun, errorFun) {
 	var jsonStr = JSON.stringify(dataObject);
 	console.log('url:' + url + ', data:' + jsonStr);

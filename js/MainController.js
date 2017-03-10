@@ -7,7 +7,6 @@
     var usernameDiv, policeCodeSpan;
 
     var user;
-
     function getUserInfo(){
         muiPostDataWithAuthorization(HTTP_GET_USERINFO, '', getUserInfoSuccess);
     };
@@ -49,7 +48,32 @@
         initUi();
         initAction();
         getUserInfo();
+        getNotifyMessageList();
     });
+
+    function getNotifyMessageList() {
+        var data = {
+            currentPage:1,
+            pageSize:10,
+            messageType:'CgAppPn'
+        };
+        muiPostDataWithAuthorization(HTTP_QUERY_NOTIFY_MESSAGE_LIST, data, getNotifyMessageListSuccess)
+    };
+
+    function getNotifyMessageListSuccess(response){
+        consoleLog(TAG, JSON.stringify(response));
+        if(response.result == HTTP_RESULT_SUCCESS) {
+            updateNotifyMessageUi(response.data);
+        } else {
+            consoleLog(TAG, 'get notify message list error');
+        }
+    };
+
+    function updateNotifyMessageUi(data) {
+        if(data.totalRecord > 0) {
+            document.getElementById('notifyMessageCount').style.display = 'block';
+        }
+    };
 
     function initUi(){
         slideMenuWrapper = mui('#slideMenuWrapper');
