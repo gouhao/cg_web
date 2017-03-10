@@ -1,79 +1,102 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title></title>
-		<script src="js/mui.min.js"></script>
-		<link href="css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="css/base.css" />
-		<script type="text/javascript" src="js/ModifyYearController.js" ></script>
-		<script src="../js/mui.picker.min.js"></script>
-		<script type="text/javascript" src="js/mui.picker.all.js" ></script>
-		<link rel="stylesheet" href="css/mui.picker.all.css" />
-		<style>
-			#setYear {
-		    		width: 100%;
-		    		height: 50px;
-		    		position: relative;
-		    		display: flex;
-		    		align-items: center;
-		    		background-color: white;
-		    	}
-		    	#setYear label{
-		    		display: block;
-		    	}
-		    	
-		    	#setYear img {
-		    		width: 24px;
-		    		height: 24px;
-		    		position: absolute;
-		    		top: 50%;
-		    		margin-top: -12px;
-		    		right: 10px;
-		    	}
-		    	
-		    	.descripe {
-		    		font-size: 14px;
-		    	}
-		    	
-		    	.title {
-		    		float: left;
-		    		margin-right: 30px;
-		    	}
-		    	
-		    	#selectTime {
-		    		float: left;
-		    	}
-		    	hr{
-		    		height: 0.1px;
-		    		margin: 0;
-		    		padding: 0;
-		    	}
-		</style>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title></title>
 
-	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">年份设置</h1>
-		</header>
-		<div class="mui-content">
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/mui.picker.min.css" />
 
-			<hr style="margin-top: 10px;"/>
-			<div id="setYear" data-options='{"type":"year"}'>
-				<div class="title">
-					<label>年份选择</label>
-					<label class="descripe">默认为本年的采购单,可选择其他年份看</label>
-				</div>
+    <style>
+        #setYear {
+            width: 100%;
+            height: 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: white;
+        }
 
-				<label id="selectTime">2017</label>
-				<img src="qq.png" />
-			</div>
-			<hr />
+        #setYear label {
+            display: block;
+        }
 
-		</div>
-	</body>
+        #setYear img {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 50%;
+            margin-top: -12px;
+            right: 10px;
+        }
+
+        .descripe {
+            font-size: 14px;
+        }
+
+        .title {
+            float: left;
+            margin-right: 30px;
+        }
+
+        #selectTime {
+            float: left;
+        }
+
+        hr {
+            height: 0.1px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #noSetYear {
+            text-align: center;
+        }
+
+        #noSetContent {
+            margin-top: 200px;
+        }
+    </style>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">年份设置</h1>
+</header>
+<div class="mui-content">
+    <div id="noSetYear" class="none">
+        <div id="noSetContent">
+            <p>采购申请单的数据为本年数据</p>
+            <p>因为暂无其它年份数据,所以不能切换查看</p>
+        </div>
+    </div>
+    <div id="setLayout" class="none">
+        <hr style="margin-top: 10px;"/>
+        <div id="setYear">
+            <div class="title">
+                <label>年份选择</label>
+                <label class="descripe">默认为本年的采购单,可选择其他年份看</label>
+            </div>
+
+            <label id="selectTime"></label>
+            <img src="qq.png"/>
+        </div>
+        <hr/>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/Common.js"></script>
+<script src="js/HttpCommon.js"></script>
+<script src="js/mui.min.js"></script>
+
+<script src="js/mui.picker.min.js"></script>
+<script type="text/javascript" src="js/ModifyYearController.js"></script>
+</body>
 
 </html>

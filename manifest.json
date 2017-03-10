@@ -531,7 +531,13 @@
 					"js/mui.picker.all.js",
 					"css/mui.picker.all.css",
 					"css/mui.picker.min.css",
-					"css/mui.picker.css"
+					"css/mui.picker.css",
+					"js/app.js",
+					"js/HttpCommon.js",
+					"js/Common.js",
+					"js/mui.picker.min.js",
+					"js/mui.poppicker.js",
+					"css/mui.poppicker.css"
 				],
 				"refer": [],
 				"priority": 0

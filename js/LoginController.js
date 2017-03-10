@@ -74,11 +74,17 @@
     };
 
     function goToMain() {
+        checkYear();
         muiOpenWindowWithoutWaiting('main.html');
         accountInput.value = '';
         passwordInput.value = '';
     };
 
+    function checkYear() {
+      if(!localStorage.getItem(KEY_YEAR)) {
+          localStorage.setItem(KEY_YEAR, new Date().getFullYear());
+      }
+    };
     function getContactResult(result) {
         if(result == HTTP_RESULT_SUCCESS) {
             localStorage.setItem(KEY_IS_GET_PERSON_LIST, true);
